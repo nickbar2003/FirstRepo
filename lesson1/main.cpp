@@ -1,3 +1,11 @@
+/*
+  Topics:
+  - Variables
+  - Basic Types
+  - Arithmetic Operators
+  - Logic Operators
+  - String Concatenation
+*/
 #include <iostream>
 
 int main() {
@@ -14,7 +22,7 @@ int main() {
   bool is_nick_cool = false;
   std::string my_name = "Meine name ist nick";
 
-  // Arithmetic Operations
+  // Arithmetic Operators
   // Addition
   int sum = x + y;
   // Subtraction
@@ -36,13 +44,12 @@ int main() {
   bool is_even = x % 2 == 0;
   bool is_odd = x % 2 == 1;
 
-  // String Operators
+  // String Concatenation
   std::string first_name = "Nick";
   std::string last_name = "Barinaga";
-  // Concatenation
   std::string full_name = first_name + " " + last_name;
 
-  std::cout << my_name << '\n';
+  std::cout << full_name << '\n';
 
   return 0;
 }
