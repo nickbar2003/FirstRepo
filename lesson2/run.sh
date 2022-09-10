@@ -1,4 +1,4 @@
 #!/bin/bash
-g++ main.cpp -o a 
+g++ nick.cpp -o a 
 ./a
 
