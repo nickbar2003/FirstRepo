@@ -11,6 +11,7 @@
 // Forward Declaration - Lets you call functions before the defn
 // return_type function_name(parameter types);
 // void print_input(std::string);
+void loops();
 void print_input(std::string);
 void branch_testing();
 bool always_true();
@@ -21,22 +22,58 @@ int main() {
   // Function call, aka actually run the function
   // print_input("My fart");
 
-  int hourly_rate = 0;
-  int hours_worked = 0;
+  bool should_run = true;
 
-  std::cout << "Please enter a your hourly rate: ";
-  std::cin >> hourly_rate;
+  while (should_run) {
+    int hourly_rate = 0;
+    int hours_worked = 0;
 
-  std::cout << "Please enter a your hours worked: ";
-  std::cin >> hours_worked;
+    std::cout << "Please enter a your hourly rate: ";
+    std::cin >> hourly_rate;
+
+    std::cout << "Please enter a your hours worked: ";
+    std::cin >> hours_worked;
 
 
-  int wage = hourly_rate * hours_worked;
+    int wage = hourly_rate * hours_worked;
 
-  std::cout << "You have earned: $" << wage << " \n";
+    std::cout << "You have earned: $" << wage << " \n";
 
+    std::cout << "0 to Exit, 1 to Continue ";
+
+    std::cin >> should_run;
+  }
 
   return 0;
+}
+
+
+void loops() {
+  /*
+     While loop
+     // While the cond is true, we can run the block
+     while (cond) {
+      // do statement
+      // go back and check if cond still true
+     }
+   */
+
+
+  // Ugly manual for loop using a while
+  // While loops are good but you shouldnt use them this way
+  int counter = 0;
+  while (counter < 10) {
+    std::cout << "Hi from ugly loop" << '\n';
+
+    counter++;
+  }
+
+  //Instead use this
+  for (int i = 0; i < 10; i++) {
+    std::cout << "Hi from pretty loop" << '\n';
+  }
+
+
 }
 
 
