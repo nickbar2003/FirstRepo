@@ -1,19 +1,55 @@
 /*
   Topics:
   - Conditionals (Branches)
-  - Loops
   - Functions (Procedures)
-  - Arrays
+  - User input
+  - Loops
  */
 #include <cstdio>
 #include <iostream>
 
-// Function Forward Declaration
+// Forward Declaration - Lets you call functions before the defn
 // return_type function_name(parameter types);
+// void print_input(std::string);
+void print_input(std::string);
+void branch_testing();
 bool always_true();
 bool is_even(int);
 
+
 int main() {
+  // Function call, aka actually run the function
+  // print_input("My fart");
+
+  int hourly_rate = 0;
+  int hours_worked = 0;
+
+  std::cout << "Please enter a your hourly rate: ";
+  std::cin >> hourly_rate;
+
+  std::cout << "Please enter a your hours worked: ";
+  std::cin >> hours_worked;
+
+
+  int wage = hourly_rate * hours_worked;
+
+  std::cout << "You have earned: $" << wage << " \n";
+
+
+  return 0;
+}
+
+
+
+// Actual function declaration
+// We expect a variable, lets just call it input for now
+// But it could any string. 
+// This function will take that input, and print it to the console.
+void print_input(std::string input) {
+  std::cout << input << '\n';
+}
+
+void branch_testing() {
   // In the parens, a conditional that evalutes to either true or false
   if (true) {
     printf("true\n");
@@ -60,8 +96,6 @@ int main() {
   } else {
     printf("c is odd\n");
   }
-
-  return 0;
 }
 
 // Function Declaration
