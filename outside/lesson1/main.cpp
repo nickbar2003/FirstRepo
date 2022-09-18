@@ -2,6 +2,7 @@
   Topics:
   - Variables
   - Basic Types
+  - Expressions
   - Arithmetic Operators
   - Logic Operators
   - String Concatenation
@@ -22,27 +23,43 @@ int main() {
   bool is_nick_cool = false;
   std::string my_name = "Meine name ist nick";
 
+  // Expressions
+  // x + 4
+  // cond && cond
+
   // Arithmetic Operators
-  // Addition
+  // Addition +
   int sum = x + y;
-  // Subtraction
+  // Subtraction -
   double diff = z - 2.2;
-  // Multiplication
+  // Multiplication *
   double product = x * 2;
-  // Division
+  // Division /
   double quotient = z / y;
-  // Modulus
+  // Modulus %
   int remainder = x % 3;
 
   // Logic Operators
+  // Equal To ==
   bool x_equal_y = x == y;
+  // Not ![cond], != for example
   bool x_not_equal_y = x != y;
+  // Less Than <
   bool x_less_than_y = x < y;
+  // Greather Than >
   bool x_greater_than_y = x > y;
+  // Greather Than Or Equal To >=
   bool x_greater_than_or_equal_y = x >= y;
+  // Less Than Or Equal To <=
   bool x_less_than_or_equal_y = x <= y;
+
   bool is_even = x % 2 == 0;
   bool is_odd = x % 2 == 1;
+
+  // Or ||
+  bool either_even_or_odd = is_even || is_odd;
+  // And &&
+  bool x_is_less_than_4_and_is_odd = (x < 4) && is_odd;
 
   // String Concatenation
   std::string first_name = "Nick";
