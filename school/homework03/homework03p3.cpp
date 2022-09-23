@@ -12,9 +12,14 @@ int main() {
     std::string noun1;
     std::string noun2;
     
-    
+    double averageNumberOfCharsMadlib1;
+    double averageNumberOfCharsMadlib2;
+
+    double numberOfSpacesMadlib1 = 3;
+    double numberOfSpacesMadlib2 = 6;
 
 
+            
 
 
     std::cout << "Give me a name"
@@ -32,8 +37,10 @@ int main() {
     std::cout << "Please excuse " << name << " who is far too " << adjective << " to attend " << noun << " class" << std::endl;
 
     int numberOfCharsMadlib1 = numberOfCharsName + numberOfCharsAdjective + numberOfCharsNoun; 
-    std::cout << "The number of chars in the first madlib is " << numberOfCharsMadlib1 << std::endl;
+    averageNumberOfCharsMadlib1 = numberOfCharsMadlib1 / numberOfSpacesMadlib1;
 
+    std::cout << "The number of chars in the first madlib is " << numberOfCharsMadlib1 << std::endl;
+    std::cout << "The average number of chars per place in the first madlib was " << averageNumberOfCharsMadlib1 << std::endl;
 
     std::cout << "lets play again, give me an adjective" << std::endl;
     getline(std::cin, adjective1);
@@ -59,15 +66,17 @@ int main() {
 
     int numberOfCharsMadLib2 = numberOfCharsAdjective1 + numberOfCharsAdjective2 + numberOfCharsVerbalNoun + numberOfCharsNoun1 + numberOfCharsNoun2 + 
     numberOfCharsName1;
+    averageNumberOfCharsMadlib2 = numberOfCharsMadLib2 / numberOfSpacesMadlib2;
 
     std::cout << "The number of chars in the second madlib is " << numberOfCharsMadLib2 << std::endl;
+    std::cout << "The average number of chars per place in the second madlib was " << averageNumberOfCharsMadlib2 << std::endl;
 
 
 
 
 
 
-        
+                
 
     return 0;
 
