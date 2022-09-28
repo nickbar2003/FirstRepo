@@ -8,6 +8,11 @@ int main() {
         We are going to make a food price look up program.
         The user should be able to look up a food and then see the current price
         or be told that it is out of stock or not carried.
+                /\
+               /  \  (Branch if)
+              /    \
+
+
     */
     std::cout << "welcome to my store\n";
     bool still_searching = true;
@@ -18,7 +23,7 @@ int main() {
         std::cin >> choice;
         std::cout << "you entered " << choice << '\n';
 
-
+        
         
 
         
