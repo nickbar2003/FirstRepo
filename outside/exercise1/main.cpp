@@ -10,6 +10,12 @@
 
 #include <iostream>
 
+
+
+int print_n(int);
+int is_factor();
+int update();
+
 int main() {
   // call print_n here
 
