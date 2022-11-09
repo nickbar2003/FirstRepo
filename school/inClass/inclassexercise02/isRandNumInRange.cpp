@@ -23,7 +23,7 @@ int main() {
 
     switch (randomNumber)
     {
-        case '' : std::cout << randomNumber << " is between 150 and 210";
+        case 'a' : std::cout << randomNumber << " is between 150 and 210";
               break;
         case 'b' : std:: cout << randomNumber << " is outside the range!";
                     break;              
