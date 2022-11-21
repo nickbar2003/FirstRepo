@@ -1,9 +1,9 @@
-#include <header.h>
+#include "headerRos.h"
 
 
 int main() {
 
-    int arraySize;
+    int arraySize = 10;
     int test[arraySize];
 
 
@@ -16,9 +16,13 @@ int main() {
     while(stillPraying) {
         sleep_for(milliseconds(loopDelay_ms));
         for(int count = 0; count < arraySize; count++){
-            std::cout << test[count];
+            
+            
+            std::cout << test[count] << " ";
+            
         }
-
+        std::cout << "\n";
+        stillPraying = 0;
 
 
 
