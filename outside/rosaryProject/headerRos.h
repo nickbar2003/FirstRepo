@@ -5,5 +5,5 @@
 using namespace std::this_thread;
 using namespace std::chrono;
 
-int loopDelay_ms = 100;
+int loopDelay_ms = 1000;
 bool stillPraying = true;
