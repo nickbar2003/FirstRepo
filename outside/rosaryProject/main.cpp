@@ -33,7 +33,7 @@ void printPrayers(std::string prayerName) {
         sleep_for(milliseconds(LOOP_DELAY_MS));
         std::cout << prayerName[index];
     }
-
+    std::cout << "\n";
 }
 
 void joyfulRos() {
@@ -43,7 +43,7 @@ void joyfulRos() {
     std::string ohMyJesus = readPrayers("ohMyJesus.txt");
     std::string ourFather = readPrayers("ourFather.txt");
 
-    std::cout << "The Joyful \n\n";
+    std::cout << "The Joyful Mysteries\n\n";
     printPrayers(aCreed);
     std::cout << "For increase in Faith\n\n";
     printPrayers(hailMary);
