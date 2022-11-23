@@ -5,13 +5,12 @@ int main() {
 
 
     const int size = 4;
-    int arrValues[size] = 0;
+    int arrValues[size];
        
-
 
     for (int count = 0; count < size; count++) {
 
-        int arrValues[count] = count--; 
+        int arrValues[count] = 99; 
 
 
     }

@@ -3,10 +3,20 @@
 
 int main() {
     
-    joyfulRos();
-    
-    
+    std::map<std::string, std::string> prayers = {
 
+        {"hailMary", readPrayers("hailMary.txt")},
+        {"ourFather", readPrayers("ourFather.txt")},
+        {"dox", readPrayers("doxology.txt")},
+        {"aCreed", readPrayers("aCreed.txt")},
+        {"ohMyJesus", readPrayers("ohMyJesus.txt")},
+    }; 
+    
+    printPrayers(prayers["hailMary"]);
+    printPrayers(prayers["ourFather"]);
+    printPrayers(prayers["dox"]);
+    printPrayers(prayers["aCreed"]);
+    printPrayers(prayers["ohMyJesus"]);
 }
 
 // Takes in file path and returns contents 
@@ -36,27 +46,9 @@ void printPrayers(std::string prayerName) {
     std::cout << "\n";
 }
 
-void joyfulRos() {
-    std::string aCreed = readPrayers("aCreed.txt");
-    std::string hailMary = readPrayers("hailMary.txt");
-    std::string dox = readPrayers("doxology.txt");
-    std::string ohMyJesus = readPrayers("ohMyJesus.txt");
-    std::string ourFather = readPrayers("ourFather.txt");
 
-    std::cout << "The Joyful Mysteries\n\n";
-    printPrayers(aCreed);
-    std::cout << "For increase in Faith\n\n";
-    printPrayers(hailMary);
-    std::cout << "For increase in Hope\n\n";
-    printPrayers(hailMary);
-    std::cout << "For increase in Love\n\n";
-    printPrayers(hailMary);
-    printPrayers(dox);
-    std::cout << "The first joyful mystery: The Annunciation\n\n";
-    for(int count = 0; count < DECADE; count++) {
-        printPrayers(hailMary);
-    }
+    
+    
 
 
 
-}
