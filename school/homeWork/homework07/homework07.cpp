@@ -1,8 +1,4 @@
-#include <fstream>
-#include <iostream>
-#include <stdlib.h>
-#include <time.h>
-#include <vector>
+#include "header.h"
 
 void generateRandomValues(std::vector<int> &intsVector, int);
 void printVectors(std::vector<int> &intsVector, std::vector<int> &oddNumbers,
@@ -18,31 +14,29 @@ bool isEven(int);
 std::string evenOrOdd(int);
 
 int main() {
-  std::ofstream oddsFile;
-  std::ofstream evensFile;
-  std::ofstream primesFile;
 
   std::vector<int> intsVector;
   std::vector<int> oddNumbers;
   std::vector<int> evenNumbers;
   std::vector<int> primeNumbers;
 
-  generateRandomValues(intsVector, 20);
+  std::cout << "Data proccesing program\n"
+            << "How many numbers wouldy you like to generate and "
+               "process(Default = 20)? ";
+  getline(std::cin, userInput);
+
+  if (userInput == "") {
+    quantityToGenerate = defaultAmount;
+  } else {
+    quantityToGenerate = stoi(userInput);
+  }
+  generateRandomValues(intsVector, quantityToGenerate);
   numberProccesing(intsVector, oddNumbers, evenNumbers, primeNumbers);
 
   printVectors(intsVector, oddNumbers, evenNumbers, primeNumbers);
-
-  /* oddsFile.open("odds.txt");
-  oddsFile << "Odds\n";
-  oddsFile.close();
-
-  evensFile.open("evens.txt");
-  evensFile << "Evens\n";
-  evensFile.close();
-
-  primesFile.open("primes.txt");
-  primesFile << "Primes\n";
-  primesFile.close(); */
+  writeVectorToFile(oddsFile, oddNumbers);
+  writeVectorToFile(evensFile, evenNumbers);
+  writeVectorToFile(primesFile, primeNumbers);
 }
 
 void generateRandomValues(std::vector<int> &intsVector,
@@ -88,27 +82,19 @@ void numberProccesing(std::vector<int> &intsVector,
 
   for (int i = 0; i < intsVector.size(); i++) {
     bool primeValue = isPrime(intsVector.at(i));
+    bool oddValue = isOdd(intsVector.at(i));
+    bool evenValue = isEven(intsVector.at(i));
     if (primeValue) {
       primeNumbers.push_back(intsVector.at(i));
     }
-  }
 
-  for (int i = 0; i < intsVector.size(); i++) {
-    bool oddValue = isOdd(intsVector.at(i));
     if (oddValue) {
       oddNumbers.push_back(intsVector.at(i));
-    }
-  }
-
-  for (int i = 0; i < intsVector.size(); i++) {
-    bool evenValue = isEven(intsVector.at(i));
-    if (evenValue) {
+    } else if (evenValue) {
       evenNumbers.push_back(intsVector.at(i));
     }
   }
-  std::cout << "numbers processed";
 }
-
 bool isOdd(int number) {
   bool result;
   if (number % 2 == 1) {
@@ -142,9 +128,26 @@ bool isPrime(int number) {
   return true;
 }
 
-// std::string evenOrOdd(int number) {
-// if (number % 2 == 0) {
+void writeVectorToFile(std::ofstream &fileToWriteTo,
+                       std::vector<int> &vectorToWrite) {
 
-//}
+  if (&fileToWriteTo == &oddsFile) {
+    fileToWriteTo.open("dataFiles/odds.txt");
 
-//}
+    for (int i = 0; i < vectorToWrite.size(); i++) {
+      fileToWriteTo << vectorToWrite.at(i) << "\n";
+    }
+  } else if (&fileToWriteTo == &evensFile) {
+    fileToWriteTo.open("dataFiles/evens.txt");
+
+    for (int i = 0; i < vectorToWrite.size(); i++) {
+      fileToWriteTo << vectorToWrite.at(i) << "\n";
+    }
+  } else if (&fileToWriteTo == &primesFile) {
+    fileToWriteTo.open("dataFiles/primes.txt");
+
+    for (int i = 0; i < vectorToWrite.size(); i++) {
+      fileToWriteTo << vectorToWrite.at(i) << "\n";
+    }
+  }
+}
