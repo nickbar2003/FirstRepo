@@ -1,9 +1,7 @@
 #include "header.h"
 
 void generateRandomValues(std::vector<int> &intsVector, int);
-void printVectors(std::vector<int> &intsVector, std::vector<int> &oddNumbers,
-                  std::vector<int> &evenNumbers,
-                  std::vector<int> &primeNumbers);
+void printVectors(std::vector<int> &);
 void numberProccesing(std::vector<int> &intsVector,
                       std::vector<int> &oddNumbers,
                       std::vector<int> &evenNumbers,
@@ -32,11 +30,18 @@ int main() {
   }
   generateRandomValues(intsVector, quantityToGenerate);
   numberProccesing(intsVector, oddNumbers, evenNumbers, primeNumbers);
-
-  printVectors(intsVector, oddNumbers, evenNumbers, primeNumbers);
-  writeVectorToFile(oddsFile, oddNumbers);
-  writeVectorToFile(evensFile, evenNumbers);
-  writeVectorToFile(primesFile, primeNumbers);
+  std::cout << "\n\nGenerating 20 random intergers\n";
+  printVectors(intsVector);
+  std::cout << "\n";
+  std::cout << "Odd Numbers: ";
+  printVectors(oddNumbers);
+  std::cout << "\n";
+  std::cout << "Even Numbers: ";
+  printVectors(evenNumbers);
+  std::cout << "\n";
+  std::cout << "Prime Numbers: ";
+  printVectors(primeNumbers);
+  std::cout << "\n";
 }
 
 void generateRandomValues(std::vector<int> &intsVector,
@@ -50,27 +55,9 @@ void generateRandomValues(std::vector<int> &intsVector,
   }
 }
 
-void printVectors(std::vector<int> &intsVector, std::vector<int> &oddNumbers,
-                  std::vector<int> &evenNumbers,
-                  std::vector<int> &primeNumbers) {
-  std::cout << "Generating 20 random intergers\n";
-  for (int i = 0; i < intsVector.size(); i++) {
-    std::cout << intsVector.at(i) << ", ";
-  }
-  std::cout << "\n";
-  std::cout << "Odd Numbers: ";
-  for (int i = 0; i < oddNumbers.size(); i++) {
-    std::cout << oddNumbers.at(i) << ", ";
-  }
-  std::cout << "\n";
-  std::cout << "Even Numbers: ";
-  for (int i = 0; i < evenNumbers.size(); i++) {
-    std::cout << evenNumbers.at(i) << ", ";
-  }
-  std::cout << "\n";
-  std::cout << "Prime Numbers: ";
-  for (int i = 0; i < primeNumbers.size(); i++) {
-    std::cout << primeNumbers.at(i) << ", ";
+void printVectors(std::vector<int> &vectorToPrint) {
+  for (int i = 0; i < vectorToPrint.size(); i++) {
+    std::cout << vectorToPrint.at(i) << " ";
   }
   std::cout << "\n";
 }
