@@ -11,7 +11,7 @@ std::map<std::string, std::string> prayers = {
     {"theBirthOfJesus", readPrayers("theBirthOfJesus.txt")},
     {"thePresentation", readPrayers("thePresentation.txt")},
     {"theFinding", readPrayers("theFinding.txt")},
-    {"theAgonyOfJesus", readPrayers("theAgonyOfJesus")},
+    {"theAgonyOfJesus", readPrayers("theAgonyOfJesus.txt")},
     {"theScourging", readPrayers("theScourging.txt")},
     {"theCrowning", readPrayers("theCrowning.txt")},
     {"theCarrying", readPrayers("theCarrying.txt")},
@@ -21,24 +21,186 @@ std::map<std::string, std::string> prayers = {
     {"theComingOfTheKingdom", readPrayers("theComingOfTheKingdom.txt")},
     {"theTransfiguration", readPrayers("theTransfiguration.txt")},
     {"theInstitution", readPrayers("theInstitution.txt")},
-    {"theResurection", readPrayers("theResurection.txt")},
+    {"theResurrection", readPrayers("theResurrection.txt")},
     {"theAscension", readPrayers("theAscension.txt")},
     {"theGift", readPrayers("theGift.txt")},
     {"theAssumption", readPrayers("theAssumption.txt")},
     {"theCoronation", readPrayers("theCoronation.txt")},
+    {"salveRegina", readPrayers("salveRegina.txt")},
 };
 
 int main() {
 
-  std::string userInputDay;
-  std::string userInputSeason;
+  bool praying = true;
   char rosaryType;
+  char *rosaryTypePtr = nullptr;
+  rosaryTypePtr = &rosaryType;
+
+  determineRosType(rosaryTypePtr);
+
+  while (praying) {
+
+    printPrayers(prayers["aCreed"]);
+    std::cout << "    For increase in Faith\n\n";
+    printPrayers(prayers["hailMary"]);
+    std::cout << "    For increase in Hope\n\n";
+    printPrayers(prayers["hailMary"]);
+    std::cout << "    For increase in Love\n\n";
+    printPrayers(prayers["hailMary"]);
+
+    printPrayers(prayers["dox"]);
+
+    switch (rosaryType) {
+    case 'j': {
+      printPrayers(prayers["theAnnunciation"]);
+    } break;
+    case 's': {
+      printPrayers(prayers["theAgonyOfJesus"]);
+    } break;
+    case 'l': {
+      printPrayers(prayers["theBaptism"]);
+    } break;
+    case 'g': {
+      printPrayers(prayers["theResurrection"]);
+    } break;
+    }
+    printPrayers(prayers["ourFather"]);
+
+    for (int count = 0; count < DECADE; count++) {
+      printPrayers(prayers["hailMary"]);
+    }
+    printPrayers(prayers["ohMyJesus"]);
+    printPrayers(prayers["dox"]);
+
+    switch (rosaryType) {
+    case 'j': {
+      printPrayers(prayers["theVisitation"]);
+    } break;
+    case 's': {
+      printPrayers(prayers["theScourging"]);
+    } break;
+    case 'l': {
+      printPrayers(prayers["theWeddingFeast"]);
+    } break;
+    case 'g': {
+      printPrayers(prayers["theAscension"]);
+    } break;
+    }
+    printPrayers(prayers["ourFather"]);
+
+    for (int count = 0; count < DECADE; count++) {
+      printPrayers(prayers["hailMary"]);
+    }
+
+    printPrayers(prayers["ohMyJesus"]);
+    printPrayers(prayers["dox"]);
+
+    switch (rosaryType) {
+    case 'j': {
+      printPrayers(prayers["theBirthOfJesus"]);
+    } break;
+    case 's': {
+      printPrayers(prayers["theCrowning"]);
+    } break;
+    case 'l': {
+      printPrayers(prayers["theComingOfTheKingdom"]);
+    } break;
+    case 'g': {
+      printPrayers(prayers["theGift"]);
+    } break;
+    }
+    printPrayers(prayers["ourFather"]);
+
+    for (int count = 0; count < DECADE; count++) {
+      printPrayers(prayers["hailMary"]);
+    }
+    printPrayers(prayers["ohMyJesus"]);
+    printPrayers(prayers["dox"]);
+
+    switch (rosaryType) {
+    case 'j': {
+      printPrayers(prayers["thePresentation"]);
+    } break;
+    case 's': {
+      printPrayers(prayers["theCarrying"]);
+    } break;
+    case 'l': {
+      printPrayers(prayers["theTransfiguration"]);
+    } break;
+    case 'g': {
+      printPrayers(prayers["theAssumption"]);
+    } break;
+    }
+    printPrayers(prayers["ourFather"]);
+
+    for (int count = 0; count < DECADE; count++) {
+      printPrayers(prayers["hailMary"]);
+    }
+    printPrayers(prayers["ohMyJesus"]);
+    printPrayers(prayers["dox"]);
+
+    switch (rosaryType) {
+    case 'j': {
+      printPrayers(prayers["theFinding"]);
+    } break;
+    case 's': {
+      printPrayers(prayers["theCrucifixion"]);
+    } break;
+    case 'l': {
+      printPrayers(prayers["theInstitution"]);
+    } break;
+    case 'g': {
+      printPrayers(prayers["theCoronation"]);
+    } break;
+    }
+    printPrayers(prayers["ourFather"]);
+
+    for (int count = 0; count < DECADE; count++) {
+      printPrayers(prayers["hailMary"]);
+    }
+    printPrayers(prayers["salveRegina"]);
+    praying = false;
+  }
+}
+// Takes in file path and returns contents
+std::string readPrayers(std::string filename) {
+  std::string buffer;
+  std::string curLine;
+  std::fstream prayerFile;
+
+  // prayerFiles/hailFury.txt
+  prayerFile.open("prayerFiles/" + filename);
+
+  while (std::getline(prayerFile, curLine)) {
+    buffer += curLine + "\n";
+  }
+  prayerFile.close();
+  return buffer;
+}
+
+// Prints out prayer text
+// TODO BOUDNARY CHECK FOR N+1 LOOK AHEAD
+void printPrayers(std::string prayerText) {
+
+  bool printingRed = false;
+  for (int index = 0; index < prayerText.size(); index++) {
+    std::cout.flush();
+    sleep_for(milliseconds(LOOP_DELAY_MS));
+    if (prayerText[index] == 'J' || prayerText[index + 4] == 's') {
+      printingRed = true;
+    }
+    std::cout << "\n";
+  }
+}
+// sets rosary type
+void determineRosType(char *rosaryType) {
+
   int day;
   int season;
   bool asking = true;
   bool determing = true;
-  bool praying = true;
-
+  std::string userInputDay;
+  std::string userInputSeason;
   while (asking) {
     std::cout << "Welcome to the my Rosary Program\n"
               << "What day is it? ";
@@ -85,131 +247,33 @@ int main() {
 
   while (determing) {
     if (day == 0 && season == 0) {
-      rosaryType = 'j';
-      std::cout << "Praying the Joyful mysteries\n\n";
+      *rosaryType = 'j';
+      std::cout << "\nPraying the Joyful mysteries\n\n";
     } else if (day == 0 && season == 1) {
-      rosaryType = 's';
-      std::cout << "Praying the Sorrowful mysteries\n\n";
+      *rosaryType = 's';
+      std::cout << "\nPraying the Sorrowful mysteries\n\n";
     } else if (day == 0 && season == 2) {
-      rosaryType = 'g';
-      std::cout << "Praying the Glorious mysteries\n\n";
+      *rosaryType = 'g';
+      std::cout << "\nPraying the Glorious mysteries\n\n";
     } else if (day == 1) {
-      rosaryType = 'j';
-      std::cout << "Praying the Joyful mysteries\n\n";
+      *rosaryType = 'j';
+      std::cout << "\nPraying the Joyful mysteries\n\n";
     } else if (day == 2) {
-      rosaryType = 's';
-      std::cout << "Praying the Sorrowful mysteries\n\n";
+      *rosaryType = 's';
+      std::cout << "\nPraying the Sorrowful mysteries\n\n";
     } else if (day == 3) {
-      rosaryType = 'g';
-      std::cout << "Praying the Glorious mysteries\n\n";
+      *rosaryType = 'g';
+      std::cout << "\nPraying the Glorious mysteries\n\n";
     } else if (day == 4) {
-      rosaryType = 'l';
-      std::cout << "Praying the Luminous mysteries\n\n";
+      *rosaryType = 'l';
+      std::cout << "\nPraying the Luminous mysteries\n\n";
     } else if (day == 5) {
-      rosaryType = 's';
-      std::cout << "Praying the Sorrowful mysteries\n\n";
+      *rosaryType = 's';
+      std::cout << "\nPraying the Sorrowful mysteries\n\n";
     } else if (day == 6) {
-      rosaryType = 'j';
-      std::cout << "Praying the Joyful mysteries\n\n";
+      *rosaryType = 'j';
+      std::cout << "\nPraying the Joyful mysteries\n\n";
     }
     determing = false;
   }
-
-  while (praying) {
-
-    printPrayers(prayers["aCreed"]);
-    std::cout << "For increase in Faith\n";
-    printPrayers(prayers["hailMary"]);
-    std::cout << "For increase in Hope\n";
-    printPrayers(prayers["hailMary"]);
-    std::cout << "For increase in Love\n";
-    printPrayers(prayers["hailMary"]);
-
-    printPrayers(prayers["dox"]);
-
-    switch (rosaryType) {
-    case 'j': {
-      printPrayers(prayers["theAnnunciation"]);
-    } break;
-    case 's': {
-      printPrayers(prayers["theAgonyOfJesus"]);
-    } break;
-    case 'l': {
-      printPrayers(prayers["theBaptism"]);
-    } break;
-    case 'g': {
-      printPrayers(prayers["theResurection"]);
-    } break;
-    }
-    printPrayers(prayers["ourFather"]);
-    for (int count; count < DECADE; count++) {
-      printPrayers(prayers["holyMary"]);
-    }
-    printPrayers(prayers["ohMyJesus"]);
-    printPrayers(prayers["dox"]);
-
-    switch (rosaryType) {
-    case 'j': {
-      printPrayers(prayers["theVisitation"]);
-    } break;
-    case 's': {
-      printPrayers(prayers["theScourging"]);
-    } break;
-    case 'l': {
-      printPrayers(prayers["theWeddingFeast"]);
-    } break;
-    case 'g': {
-      printPrayers(prayers["theAscension"]);
-    } break;
-    }
-    printPrayers(prayers["ourFather"]);
-    for (int count; count < DECADE; count++) {
-      printPrayers(prayers["holyMary"]);
-    }
-    switch (rosaryType) {
-    case 'j': {
-      printPrayers(prayers["theBirthOfJesus"]);
-    } break;
-    case 's': {
-      printPrayers(prayers["theCrowning"]);
-    } break;
-    case 'l': {
-      printPrayers(prayers["theComingOfTheKingdom"]);
-    } break;
-    case 'g': {
-      printPrayers(prayers["theGift"]);
-    } break;
-    }
-    printPrayers(prayers["ourFather"]);
-    for (int count; count < DECADE; count++) {
-      printPrayers(prayers["holyMary"]);
-    }
-  }
-  praying = false;
-  std::cout << "done";
-}
-// Takes in file path and returns contents
-std::string readPrayers(std::string filename) {
-  std::string buffer;
-  std::string curLine;
-  std::fstream prayerFile;
-
-  // prayerFiles/hailFury.txt
-  prayerFile.open("prayerFiles/" + filename);
-
-  while (std::getline(prayerFile, curLine)) {
-    buffer += curLine + "\n";
-  }
-  prayerFile.close();
-  return buffer;
-}
-
-void printPrayers(std::string prayerText) {
-
-  for (int index = 0; index < prayerText.size(); index++) {
-    std::cout.flush();
-    sleep_for(milliseconds(LOOP_DELAY_MS));
-    std::cout << prayerText[index];
-  }
-  std::cout << "\n";
 }
