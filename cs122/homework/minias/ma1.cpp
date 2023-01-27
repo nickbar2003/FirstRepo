@@ -2,25 +2,25 @@
 #include <fstream>
 #include <iostream>
 
-void openFile(std::string);
-void printArray(int *);
-void reverseArray(int *);
-void readToArray(int *);
+void openFile(std::fstream &, std::string);
+void printArray(std::fstream &, int *);
+void reverseArray(std::fstream &, int *);
+void readToArray(std::fstream &, int *);
 
-std::fstream fileTag;
 int main() {
+  std::fstream fileTag;
   int intArr[10];
   std::string fileName = "numbers.txt";
 
-  openFile(fileName);
-  readToArray(intArr);
-  printArray(intArr);
-  openFile(fileName);
-  reverseArray(intArr);
-  printArray(intArr);
+  openFile(fileTag, fileName);
+  readToArray(fileTag, intArr);
+  printArray(fileTag, intArr);
+  openFile(fileTag, fileName);
+  reverseArray(fileTag, intArr);
+  printArray(fileTag, intArr);
 }
 
-void openFile(std::string fileName) {
+void openFile(std::fstream &fileTag, std::string fileName) {
 
   fileTag.open(fileName);
   if (fileTag.good()) {
@@ -30,21 +30,21 @@ void openFile(std::string fileName) {
   }
 }
 
-void printArray(int *array) {
+void printArray(std::fstream &fileTag, int *array) {
   for (int i = 0; i < 10; i++) {
     std::cout << array[i] << ", ";
   }
   std::cout << "\n";
 }
 
-void reverseArray(int *array) {
+void reverseArray(std::fstream &fileTag, int *array) {
   for (int i = 9; i >= 0; i--) {
     fileTag >> array[i];
   }
   fileTag.close();
 }
 
-void readToArray(int *array) {
+void readToArray(std::fstream &fileTag, int *array) {
   for (int i = 0; i < 10; i++) {
     fileTag >> array[i];
   }
