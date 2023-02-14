@@ -2,35 +2,28 @@
 
 int main() {
 
-    std::string threeDigitNumber;
-    int hundreds;
-    int tens;
-    int ones;
-    
+  std::string threeDigitNumber;
+  int hundreds;
+  int tens;
+  int ones;
 
+  std::cout << "give me a three digit number ";
+  std::cin >> threeDigitNumber;
 
+  int number = stoi(threeDigitNumber);
 
+  hundreds = number / 100;
+  std::cout << hundreds;
 
-    std::cout << "give me a three digit number ";
-    std:: cin >> threeDigitNumber;
+  tens = (number % 100) / 10;
+  std::cout << tens;
 
-    int number = stoi(threeDigitNumber);
+  ones = (number % 100) % 10;
+  std::cout << ones;
 
-    hundreds = number / 100;
-    std::cout << hundreds;
+  std::cout << "your number " << threeDigitNumber << " has " << hundreds
+            << " hundreds, " << tens << " tens," << ones << " ones."
+            << std::endl;
 
-    tens = (number & 100) / 10;
-    std::cout << tens;
-
-    ones = (number % 100) % 10; 
-    std::cout << ones;
-
-    std::cout << "your number " << threeDigitNumber << " has " << hundreds << " hundreds, "
-    << tens << " tens," << ones << " ones." << std::endl;
-
-
-
-
-
-    return 0;
+  return 0;
 }
