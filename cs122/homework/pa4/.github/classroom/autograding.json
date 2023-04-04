@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "Compile code",
+      "run": "mkdir build; cd build; cmake ..; make;",
+      "timeout": 5,
+      "points": 0
+    },
+    {
+      "name": "Test1.loadPackages",
+      "run": "cd build; ./test/runTests --gtest_filter=Test1.loadPackages",
+      "timeout": 5,
+      "points": 15
+    },
+    {
+      "name": "Test2.computePackageStats",
+      "run": "cd build; ./test/runTests --gtest_filter=Test2.computePackageStats",
+      "timeout": 5,
+      "points": 15
+    }
+  ]
+}
